@@ -25,10 +25,10 @@ Route::get('/products/{remark}', [productController::class, 'allProducts']);
 Route::get('/products-by-categories/{category}', [productController::class, 'allProductsByCategory']);
 Route::get('/products-by-sub-cat/{category}/{sub_cat}', [productController::class, 'allProductsBysubCategory']);
 Route::get('/product/{id}', [ProductDetailsController::class, 'getProduct']);
+Route::get('/search/{key}', [productController::class, 'searchedProduct']);
 
 // Home page slider controller
 Route::get('/get-slider', [imageSlideController::class, 'allSlides']);
 
 //Notification controller
 Route::get('/notification', [NotificationController::class, 'allNotification']);
-
