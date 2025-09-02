@@ -4,8 +4,10 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\contactController;
 use App\Http\Controllers\admin\imageSlideController;
 use App\Http\Controllers\admin\NotificationController;
+use App\Http\Controllers\admin\ProductCartController;
 use App\Http\Controllers\admin\productController;
 use App\Http\Controllers\admin\ProductDetailsController;
+use App\Http\Controllers\admin\ProductReviewController;
 use App\Http\Controllers\admin\VisitorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +34,6 @@ Route::get('/get-slider', [imageSlideController::class, 'allSlides']);
 
 //Notification controller
 Route::get('/notification', [NotificationController::class, 'allNotification']);
+Route::get('/similar/{category}', [ProductDetailsController::class, 'similarProduct']);
+Route::get('/reviews/{product_id}', [ProductReviewController::class, 'getReviews']);
+Route::post('/addToCart/{product_code}', [ProductCartController::class, 'addToCart']);

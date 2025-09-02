@@ -13,9 +13,20 @@ class ProductDetailsController extends Controller
     {
         $productDetail = ProductDetails::where('product_id', $request->id)->first();
         $product = ProductList::findOrFail($id);
+
         $item = [$product, $productDetail];
 
         // array_push($item,[$product, $productDetail]);
         return $item;
     }
+
+
+    public function similarProduct(Request $request){
+        $category = $request->category;
+        $similarProducts = ProductList::where('category', $category)->limit(6)->get();
+
+        return $similarProducts;
+    }
+
+
 }
