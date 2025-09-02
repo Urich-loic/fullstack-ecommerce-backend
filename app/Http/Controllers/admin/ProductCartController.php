@@ -8,16 +8,17 @@ use App\Models\ProductDetails;
 use App\Models\ProductList;
 use Illuminate\Http\Request;
 
+
 class ProductCartController extends Controller
 {
     public function addToCart(Request $request, $product_code)
     {
-        $product_name = $request->product_name;
+        $product_name = $request->input('product_name');
         $image = $request->image;
         $email = $request->email;
-        $size = $request->size;
-        $color = $request->color;
-        $quantity = 3;
+        $size = $request->input('size');
+        $color = $request->input('color');
+        $quantity = $request->input('quantity');
 
         $product = ProductList::where('product_code', $product_code)->first();
         $productDetails = ProductDetails::where('product_id', $product->id)->first();
@@ -32,19 +33,19 @@ class ProductCartController extends Controller
         }
 
 
-        $result = ProductCart::insert([
-            'product_code' => $product_code,
-            'product_name' => $product->title,
-            'image' => $product->image,
-            'email' => 'test@gmail.com',
-            'size' => "Size :" . $productDetails->size,
-            'color' => "Color :" . $productDetails->color,
-            'quantity' => 1,
-            'unit_price' => $product->price,
-            'total_price' => $total_price,
-            'created_at' => now(),
-        ]);
+        // $result = ProductCart::insert([
+        //     'product_code' => $product_code,
+        //     'product_name' => $product->title,
+        //     'image' => $product->image,
+        //     'email' => 'test@gmail.com',
+        //     'size' => "Size :" . $request->size,
+        //     'color' => "Color :" . $request->color,
+        //     'quantity' => $request->quantity,
+        //     'unit_price' => $product->price,
+        //     'total_price' => $total_price,
+        //     'created_at' => now(),
+        // ]);
 
-        return $result;
+        return $request->size;
     }
 }
