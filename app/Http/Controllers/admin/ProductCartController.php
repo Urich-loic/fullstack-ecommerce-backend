@@ -13,12 +13,10 @@ class ProductCartController extends Controller
 {
     public function addToCart(Request $request, $product_code)
     {
-        $product_name = $request->input('product_name');
-        $image = $request->image;
-        $email = $request->email;
-        $size = $request->input('size');
-        $color = $request->input('color');
-        $quantity = $request->input('quantity');
+        $data = $request->all()[0];
+        $size = $data['size'];
+        $color = $data['color'];
+        $quantity = $data['quantity'];
 
         $product = ProductList::where('product_code', $product_code)->first();
         $productDetails = ProductDetails::where('product_id', $product->id)->first();
@@ -33,19 +31,19 @@ class ProductCartController extends Controller
         }
 
 
-        // $result = ProductCart::insert([
-        //     'product_code' => $product_code,
-        //     'product_name' => $product->title,
-        //     'image' => $product->image,
-        //     'email' => 'test@gmail.com',
-        //     'size' => "Size :" . $request->size,
-        //     'color' => "Color :" . $request->color,
-        //     'quantity' => $request->quantity,
-        //     'unit_price' => $product->price,
-        //     'total_price' => $total_price,
-        //     'created_at' => now(),
-        // ]);
+        $result = ProductCart::insert([
+            'product_code' => $product_code,
+            'product_name' => $product->title,
+            'image' => $product->image,
+            'email' => 'test@gmail.com',
+            'size' => "Size :" . $size?? 'M',
+            'color' => "Color :" . $color?? 'null',
+            'quantity' => $quantity ?? 1,
+            'unit_price' => $product->price,
+            'total_price' => $total_price,
+            'created_at' => now(),
+        ]);
 
-        return $request->size;
+        return $result;
     }
 }
