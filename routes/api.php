@@ -37,3 +37,4 @@ Route::get('/notification', [NotificationController::class, 'allNotification']);
 Route::get('/similar/{category}', [ProductDetailsController::class, 'similarProduct']);
 Route::get('/reviews/{product_id}', [ProductReviewController::class, 'getReviews']);
 Route::post('/addToCart/{product_code}', [ProductCartController::class, 'addToCart']);
+Route::get('/productCount', [ProductCartController::class, 'productCount']);

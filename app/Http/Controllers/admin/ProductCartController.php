@@ -36,8 +36,8 @@ class ProductCartController extends Controller
             'product_name' => $product->title,
             'image' => $product->image,
             'email' => 'test@gmail.com',
-            'size' => "Size :" . $size?? 'M',
-            'color' => "Color :" . $color?? 'null',
+            'size' => "Size :" . $size ?? 'M',
+            'color' => "Color :" . $color ?? 'null',
             'quantity' => $quantity ?? 1,
             'unit_price' => $product->price,
             'total_price' => $total_price,
@@ -45,5 +45,12 @@ class ProductCartController extends Controller
         ]);
 
         return $result;
+    }
+
+    public function productCount()
+    {
+        $products = ProductCart::all();
+
+        return count($products);
     }
 }
