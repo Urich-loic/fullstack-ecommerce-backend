@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\contactController;
+use App\Http\Controllers\admin\FavoriteController;
 use App\Http\Controllers\admin\imageSlideController;
 use App\Http\Controllers\admin\NotificationController;
 use App\Http\Controllers\admin\ProductCartController;
@@ -34,7 +35,16 @@ Route::get('/get-slider', [imageSlideController::class, 'allSlides']);
 
 //Notification controller
 Route::get('/notification', [NotificationController::class, 'allNotification']);
+//similar product controller
 Route::get('/similar/{category}', [ProductDetailsController::class, 'similarProduct']);
+//review product controller
 Route::get('/reviews/{product_id}', [ProductReviewController::class, 'getReviews']);
+//add to cart product controller
 Route::post('/addToCart/{product_code}', [ProductCartController::class, 'addToCart']);
 Route::get('/productCount', [ProductCartController::class, 'productCount']);
+
+
+//favorite product controller
+Route::post('/addToFavorite/{product_code}', [FavoriteController::class, 'addToFavorite']);
+Route::get('/favoriteCount', [FavoriteController::class, 'FavoriteCount']);
+
